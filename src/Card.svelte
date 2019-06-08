@@ -1,8 +1,9 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 
 	export let name;
 	export let points;
+	export let id;
   let showControls = false;
   
   const dispatcher = createEventDispatcher();
@@ -11,7 +12,7 @@
 	const removePoint = () => points -= 1;
 	const toggleShow = () => showControls = !showControls;
 	const onRemove = () => {
-    dispatcher('removeplayer', name);
+    dispatcher('removeplayer', id);
   };
 </script>
 
@@ -66,8 +67,8 @@
   </h1>
   <h3>Points: {points}</h3>
   {#if showControls}
-    <button class="btn" on:click={addPoint}>+1</button>
-    <button class="btn danger" on:click={removePoint}>-1</button>
-    <input type="number" bind:value={points}>
+		<button class="btn" on:click={addPoint}>+1</button>
+		<button class="btn danger" on:click={removePoint}>-1</button>
+		<input type="number" bind:value={points}>
   {/if}
 </div>
