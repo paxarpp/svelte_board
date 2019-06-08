@@ -18,6 +18,15 @@
   };
 </script>
 
+<style>
+  form {
+    padding: 10px;
+    width: 500px;
+    display: flex;
+    flex-flow: column;
+  }
+</style>
+
 <form on:submit={onSubmit}>
   <input type="text" placeholder="Player name" bind:value={player.name}>
   <input type="number" placeholder="Player points" bind:value={player.points}>
