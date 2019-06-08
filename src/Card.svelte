@@ -1,0 +1,73 @@
+<script>
+  import { createEventDispatcher } from 'svelte';
+
+	export let name;
+	export let points;
+  let showControls = false;
+  
+  const dispatcher = createEventDispatcher();
+
+	const addPoint = () => points += 1;
+	const removePoint = () => points -= 1;
+	const toggleShow = () => showControls = !showControls;
+	const onRemove = () => {
+    dispatcher('removeplayer', name);
+  };
+</script>
+
+<style>
+	h3, h1 {
+		margin: 5px 0;	
+	}
+	.card {
+		position: relative;
+		padding: 10px;
+		margin: 10px 0;
+		box-sizing: border-box;
+		border: 1px solid gray;
+		max-width: 500px; 
+	}
+	.btn {
+		cursor: pointer;
+		padding: 5px;
+		box-sizing: border-box;
+		border: 1px solid gray;
+		min-width: 3em;
+	}
+	.toggler {
+		cursor: pointer;
+		border: none;
+		background-color: inherit;
+	}
+	.btn.danger{
+		background-color: brown;
+	}
+	input {
+    display: block;
+  }
+  .remove {
+    background-color: inherit;
+    border: none;
+    color: red;
+    position: absolute;
+    top: 0.35rem;
+    right: 0.5rem;
+    cursor: pointer;
+  }
+</style>
+
+<div class="card">
+<button class="remove" on:click={onRemove}>X</button>
+  <h1>
+    {name}
+    <button class="toggler" on:click={toggleShow}>
+      {#if showControls}-{:else}+{/if}
+    </button>
+  </h1>
+  <h3>Points: {points}</h3>
+  {#if showControls}
+    <button class="btn" on:click={addPoint}>+1</button>
+    <button class="btn danger" on:click={removePoint}>-1</button>
+    <input type="number" bind:value={points}>
+  {/if}
+</div>
