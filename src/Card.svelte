@@ -9,8 +9,18 @@
   
   const dispatcher = createEventDispatcher();
 
-	const addPoint = () => points += 1;
-	const removePoint = () => points -= 1;
+	const addPoint = () => {
+		points += 1;
+		dispatcher('updateplayer', { points, id });
+	}
+	const changePoint = (e) => {
+		points = +e.target.value;
+		dispatcher('updateplayer', { points, id });
+	}
+	const removePoint = () => {
+		points -= 1;
+		dispatcher('updateplayer', { points, id });
+	}
 	const toggleShow = () => showControls = !showControls;
 	const onRemove = () => {
     dispatcher('removeplayer', id);
@@ -71,7 +81,7 @@
 	<div transition:slide>
 		<button class="btn" on:click={addPoint}>+1</button>
 		<button class="btn danger" on:click={removePoint}>-1</button>
-		<input type="number" bind:value={points}>
+		<input type="number" bind:value={points} on:change={changePoint}>
 	</div>
   {/if}
 </div>
