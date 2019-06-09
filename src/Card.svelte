@@ -32,6 +32,7 @@
 		margin: 5px 0;	
 	}
 	.card {
+		background-color: beige;
 		position: relative;
 		padding: 10px;
 		margin: 10px 0;

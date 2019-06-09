@@ -25,6 +25,10 @@
     display: flex;
     flex-flow: column;
   }
+  input[type="submit"] {
+    background-color: lightblue;
+    cursor: pointer;
+  }
 </style>
 
 <form on:submit={onSubmit}>
